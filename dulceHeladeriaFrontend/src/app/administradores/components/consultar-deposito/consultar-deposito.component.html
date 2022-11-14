@@ -1,51 +1,51 @@
 <div id="header">
-    <h3>Depósitos</h3>
-    <app-registrar-deposito></app-registrar-deposito>
+  <h3>Depósitos</h3>
+  <app-registrar-deposito></app-registrar-deposito>
 </div>
 <div id="content" class="mt-3">
-    <form [formGroup]="busquedaForm">
-        <div class="row">
-          <div class="col mb-3">
-            <input type="text" class="form-control" placeholder="Nombre" formControlName="name" (keyup)="buscarDepositos()">
-          </div>
+  <form [formGroup]="busquedaForm">
+      <div class="row">
+        <div class="col mb-3">
+          <input type="text" class="form-control" placeholder="Nombre" formControlName="name" (keyup)="buscarDepositos()">
         </div>
-        <div class="row">
-          <div class="col mb-3">
-            <input type="text" class="form-control" placeholder="Dirección" formControlName="address" (keyup)="buscarDepositos()">
-          </div>
-          <div class="col mb-3">
-            <input type="text" class="form-control" placeholder="Capacidad" formControlName="capacity" (keyup)="buscarDepositos()">
-          </div>
+      </div>
+      <div class="row">
+        <div class="col mb-3">
+          <input type="text" class="form-control" placeholder="Dirección" formControlName="address" (keyup)="buscarDepositos()">
         </div>
-        <div class="row">
-          <div class="col mb-6">
-            
-          </div>
+        <div class="col mb-3">
+          <input type="text" class="form-control" placeholder="Capacidad" formControlName="capacity" (keyup)="buscarDepositos()">
         </div>
-      </form>
-    <table class="table mt-3">
-        <thead>
-            <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Capacidad</th>
-                <th scope="col">Dirección</th>
-                <th scope="col">Estado</th>
-                <th scope="col"></th>
-            </tr>            
-        </thead>
-        <tbody>
-            <tr *ngFor="let dep of ResultBusqueda">
-                <td>{{dep.name}}</td>
-                <td>{{dep.capacity}} Artículos</td>
-                <td>{{dep.address}}</td>
-                <td>{{ !dep.deletionDate ? "Activo" : "Inactivo"}}</td>
-                <td>
-                    <div id="acciones">
-                        <button class="btn btn-primary"><i class="bi bi-pencil-square"></i></button>                
-                        <button class="btn btn-primary"><i class="bi bi-info-circle"></i></button>   
-                    </div> 
-                </td>
-            </tr>
-        </tbody>
-    </table>
+      </div>
+      <div class="row">
+        <div class="col mb-6">
+          
+        </div>
+      </div>
+    </form>
+  <table class="table mt-3">
+      <thead>
+          <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Capacidad</th>
+              <th scope="col">Dirección</th>
+              <th scope="col">Estado</th>
+              <!-- <th scope="col"></th> -->
+          </tr>            
+      </thead>
+      <tbody>
+          <tr *ngFor="let dep of ResultBusqueda">
+              <td>{{dep.name}}</td>
+              <td>{{dep.capacity}} Artículos</td>
+              <td>{{dep.address}}</td>
+              <td>{{ !dep.deletionDate ? "Activo" : "Inactivo"}}</td>
+              <!-- <td>
+                  <div id="acciones">
+                      <button class="btn btn-primary"><i class="bi bi-pencil-square"></i></button>                
+                      <button class="btn btn-primary"><i class="bi bi-info-circle"></i></button>   
+                  </div> 
+              </td> -->
+          </tr>
+      </tbody>
+  </table>
 </div>

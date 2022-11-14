@@ -36,7 +36,7 @@ export class ReporteVentaComponent implements OnInit {
     this.rangeService.rangeEmit()
     .subscribe({
       next: (resp:range) => {
-        console.log("se obtubo la fecha")
+        console.log("se obtuvo la fecha")
         console.log(resp);
         this.date = resp
       },

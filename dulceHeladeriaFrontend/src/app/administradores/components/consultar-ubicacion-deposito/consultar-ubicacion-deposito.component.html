@@ -1,51 +1,51 @@
 <div id="header">
-    <h3>Ubicaciones:</h3>
-    <app-registrar-ubicacion-deposito></app-registrar-ubicacion-deposito>
-    <!-- <button class="btn btn-primary" (click)="regresar()">Volver</button>     -->
+  <h3>Ubicaciones:</h3>
+  <app-registrar-ubicacion-deposito></app-registrar-ubicacion-deposito>
+  <!-- <button class="btn btn-primary" (click)="regresar()">Volver</button>     -->
 </div>
 <div id="content" class="mt-3">
-    <form [formGroup]="form">
-        <div class="row">
-          <div class="col mb-3">
-            <input type="text" class="form-control" placeholder="Fila" formControlName="row" (keyup)="buscarUbicacion()">
-          </div>
+  <form [formGroup]="form">
+      <div class="row">
+        <div class="col mb-3">
+          <input type="text" class="form-control" placeholder="Fila" formControlName="row" (keyup)="buscarUbicacion()">
         </div>
-        <div class="row">
-          <div class="col mb-3">
-            <input type="text" class="form-control" placeholder="Columna" formControlName="column" (keyup)="buscarUbicacion()">
-          </div>
-          <div class="col mb-3">
-            <input type="number" class="form-control" placeholder="Capacidad" formControlName="capacity" (keyup)="buscarUbicacion()">
-          </div>
+      </div>
+      <div class="row">
+        <div class="col mb-3">
+          <input type="text" class="form-control" placeholder="Columna" formControlName="column" (keyup)="buscarUbicacion()">
         </div>
-        <div class="row">
-          <div class="col mb-6">
-           
-          </div>
+        <div class="col mb-3">
+          <input type="number" class="form-control" placeholder="Capacidad" formControlName="capacity" (keyup)="buscarUbicacion()">
         </div>
-      </form>    
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Columna</th>
-                <th scope="col">Fila</th>
-                <th scope="col">Capacidad</th>
-                <th scope="col">Estado</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let ubi of ResultBusqueda">
-                <td>{{ubi.column}}</td>
-                <td>{{ubi.row}}</td>
-                <td>{{ubi.capacity}}</td>
-                <td>{{ !ubi.deletionDate ? "Activo" : "Inactivo"}}</td>
-                <td>
-                    <div id="acciones">
-                        <button class="btn btn-primary"><i class="bi bi-info-circle"></i></button>   
-                    </div> 
-                </td>
-            </tr>
-        </tbody>
-    </table>
+      </div>
+      <div class="row">
+        <div class="col mb-6">
+         
+        </div>
+      </div>
+    </form>    
+  <table class="table">
+      <thead>
+          <tr>
+              <th scope="col">Columna</th>
+              <th scope="col">Fila</th>
+              <th scope="col">Capacidad</th>
+              <th scope="col">Estado</th>
+              <!-- <th scope="col"></th> -->
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let ubi of ResultBusqueda">
+              <td>{{ubi.column}}</td>
+              <td>{{ubi.row}}</td>
+              <td>{{ubi.capacity}}</td>
+              <td>{{ !ubi.deletionDate ? "Activo" : "Inactivo"}}</td>
+              <!-- <td>
+                  <div id="acciones">
+                      <button class="btn btn-primary"><i class="bi bi-info-circle"></i></button>   
+                  </div> 
+              </td> -->
+          </tr>
+      </tbody>
+  </table>
 </div>

@@ -15,6 +15,6 @@ export class ProductosService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'true', 'Authorization' : 'Bearer '+ this.jwt }),
   };
   getProductos(): Observable<productoResponse[]> {
-    return this.http.get<productoResponse[]>(`https://localhost:5001/api/product/available`, this._options);
+    return this.http.get<productoResponse[]>(`https://heladeria-back.herokuapp.com/api/product/available`, this._options);
   }
 }

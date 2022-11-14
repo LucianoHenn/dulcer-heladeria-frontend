@@ -23,10 +23,10 @@ export class NuevaVentaService {
   constructor(private http: HttpClient) { }
 
   registrarVenta(venta: VentaRequestDto):Observable<any>{
-    return this.http.post<any>('https://localhost:5001/api/sale',venta, this._options)
+    return this.http.post<any>('https://heladeria-back.herokuapp.com/api/sale',venta, this._options)
   }
   getVentas(): Observable<GetVentaDto[]>{
-    return this.http.get<GetVentaDto[]>("https://localhost:5001/api/sale",this._options)
+    return this.http.get<GetVentaDto[]>("https://heladeria-back.herokuapp.com/api/sale",this._options)
   }
 
   //   const headers = { 'content-type': 'application/json' }

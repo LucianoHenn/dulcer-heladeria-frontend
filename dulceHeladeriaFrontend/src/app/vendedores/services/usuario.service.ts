@@ -20,9 +20,9 @@ export class UsuarioService {
 
 
   getUserById(id: number): Observable<UsuarioResponse>{
-    return this.http.get<UsuarioResponse>(`https://localhost:5001/api/user/${id}`,this._options);
+    return this.http.get<UsuarioResponse>(`https://heladeria-back.herokuapp.com/api/user/${id}`,this._options);
   }
   changePassword(userId: number, passwords: UsuarioPasswordResponse): Observable<any>{
-    return this.http.put<any>(`https://localhost:5001/api/user/${userId}/changepassword`,passwords,this._options);
+    return this.http.put<any>(`https://heladeria-back.herokuapp.com/api/user/${userId}/changepassword`,passwords,this._options);
   }
 }

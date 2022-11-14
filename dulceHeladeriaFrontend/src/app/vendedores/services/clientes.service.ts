@@ -20,9 +20,9 @@ export class ClientesService {
   };
 
   addCliente(cliente: Cliente) {
-    //return this.http.post<any>('https://localhost:5001/api/Client',cliente);
+    //return this.http.post<any>('https://heladeria-back.herokuapp.com/api/Client',cliente);
     return this.http.post<Cliente>(
-      'https://localhost:5001/api/Client',
+      'https://heladeria-back.herokuapp.com/api/Client',
       JSON.stringify(cliente),
       this._options
     );
@@ -30,23 +30,23 @@ export class ClientesService {
 
   create(cliente: Cliente): Observable<any> {
     return this.http.post<any>(
-      'https://localhost:5001/api/Client',
+      'https://heladeria-back.herokuapp.com/api/Client',
       cliente,
       this._options
     );
   }
   getClientes(): Observable<Cliente[]> {
     return this.http.get<Cliente[]>(
-      `https://localhost:5001/api/Client`,
+      `https://heladeria-back.herokuapp.com/api/Client`,
       this._options
     );
   }
   getClienteByNombre(nombre: string): Observable<Cliente> {
     let params = new HttpParams();
     params = params.append('BusinessName', nombre);
-    return this.http.get<Cliente>(`https://localhost:5001/api/client/name`, {...this._options, params: params});
+    return this.http.get<Cliente>(`https://heladeria-back.herokuapp.com/api/client/name`, {...this._options, params: params});
   }
   updateCliente(cliente: Cliente): Observable<any>{
-    return this.http.put(`https://localhost:5001/api/Client/${cliente.id}`,cliente, this._options);
+    return this.http.put(`https://heladeria-back.herokuapp.com/api/Client/${cliente.id}`,cliente, this._options);
   }
 }

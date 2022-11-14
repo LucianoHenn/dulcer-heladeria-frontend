@@ -29,18 +29,18 @@ export class VentaService {
   getAllVenta(range:range): Observable<any> {
     let newStart = this.datepipe.transform(range.start,"yyyy-MM-dd");
     let newEnd = this.datepipe.transform(range.end,"yyyy-MM-dd");
-    return this.http.get(`https://localhost:5001/range?start=${newStart}&end=${newEnd}`,this._options);
+    return this.http.get(`https://heladeria-back.herokuapp.com/range?start=${newStart}&end=${newEnd}`,this._options);
   }
 
   getAllVenta2(start:Date, end:Date): Observable<any> {
     let newStart = this.datepipe.transform(start,"yyyy-MM-dd");
     let newEnd = this.datepipe.transform(end,"yyyy-MM-dd");
-    return this.http.get(`https://localhost:5001/range?start=${newStart}&end=${newEnd}`,this._options);
+    return this.http.get(`https://heladeria-back.herokuapp.com/range?start=${newStart}&end=${newEnd}`,this._options);
   }
 
   getVentaConMetodoPago(start:Date): Observable<any> {
     let newStart = this.datepipe.transform(start,"yyyy-MM-dd");
-    return this.http.get(`https://localhost:5001/day?start=${newStart}`,this._options);
+    return this.http.get(`https://heladeria-back.herokuapp.com/day?start=${newStart}`,this._options);
   }
 
 }

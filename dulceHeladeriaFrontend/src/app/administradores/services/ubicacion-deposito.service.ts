@@ -18,12 +18,12 @@ export class UbicacionDepositoService {
 
   create(ubicacion : UbicacionDeposito): Observable<UbicacionDeposito> {
     return this.http.post<UbicacionDeposito>(
-      'https://localhost:5001/api/Location',ubicacion, this._options
+      'https://heladeria-back.herokuapp.com/api/Location',ubicacion, this._options
     );
   }
   
   getAll(): Observable<UbicacionDeposito[]> {
-    return this.http.get<UbicacionDeposito[]>('https://localhost:5001/api/Location', this._options);
+    return this.http.get<UbicacionDeposito[]>('https://heladeria-back.herokuapp.com/api/Location', this._options);
   }
   
 }

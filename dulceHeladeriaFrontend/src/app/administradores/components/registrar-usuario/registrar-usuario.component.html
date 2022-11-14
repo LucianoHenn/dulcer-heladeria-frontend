@@ -1,0 +1,50 @@
+<!-- <div class="form-container"> -->
+  <div id="header">
+    <h3>Registrar Usuario</h3>
+    <button type="button" class="btn btn-primary" (click)="regresar()">Volver</button>
+</div>
+    <!-- <div class="title">
+      <p><b>AGREGAR USUARIO</b></p>
+    </div> -->
+    <form class="container-fluid form" [formGroup]="form">
+      <div class="row"> 
+        <div class="form-group col-sm-6">
+          <!-- <label for="inputNombre">Nombre</label> -->
+          <input type="text" class="form-control" id="inputNombre" placeholder="Nombre" formControlName="name">
+        </div>
+        <div class="form-group col-sm-6">
+          <!-- <label for="inputApellido">Apellido</label> -->
+          <input type="text" class="form-control" id="inputApellido" placeholder="Apellido" formControlName="lastName">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <!-- <label for="inputDni">Dni</label> -->
+          <input type="text" class="form-control" id="inputDni" placeholder="Dni" formControlName="dni">
+        </div>
+        <div class="form-group col-sm-6">
+          <!-- <label for="inputEmail">Email</label> -->
+          <input type="email" class="form-control" id="inputEmail" placeholder="Email" formControlName="email">
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <!-- <label for="inputContraseña">Contraseña</label> -->
+          <input type="password" class="form-control" id="inputContraseña" placeholder="Contraseña" formControlName="password">
+        </div>
+        <div class="form-group col-sm-6">
+          <!--<label for="inputEmailRepetirContraseña">Repetir Contraseña</label>-->
+          <input type="password" class="form-control" id="inputRepetirContraseña" placeholder="Repetir Contraseña" formControlName="confirmarContraseña">
+        </div>
+      </div>
+    
+      <div class="row">
+        <select class="form-select form-select-md mb-3" aria-label=".from.select-md Rol de usuario" formControlName="rol">
+          <option value="0">Administrador</option>
+          <option value="1">Vendedor</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="enviar()" [disabled]="form.invalid">Agregar</button>
+    </form>
+  <!-- </div> -->

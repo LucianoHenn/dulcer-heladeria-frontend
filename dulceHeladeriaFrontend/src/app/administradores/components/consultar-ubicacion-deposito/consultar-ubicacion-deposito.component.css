@@ -1,0 +1,26 @@
+.btn-primary {
+    background-color: pink;
+    border: none;
+    color: white;
+  }
+  
+  .btn-primary:active {
+    background-color: lightcoral;
+    border: none;
+    color: white;
+  }
+  
+  td {
+    vertical-align: middle;
+  }
+  
+  #acciones {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  #header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  

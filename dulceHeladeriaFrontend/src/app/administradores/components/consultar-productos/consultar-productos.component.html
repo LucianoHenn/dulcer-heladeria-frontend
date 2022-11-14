@@ -1,0 +1,53 @@
+<div id="header">
+    <h3>Productos</h3>
+    <button type="button" class="btn btn-primary" routerLink="/administrador/productos/nuevo">Nuevo Producto</button>
+</div>
+<div id="content" class="mt-3">
+    <form [formGroup]="busquedaForm">
+        <div class="row">
+          <div class="col mb-3">
+            <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre" (keyup)="buscarProductos()">
+          </div>
+          <div class="col mb-3">
+            <input type="text" class="form-control" placeholder="Precio" formControlName="precio" (keyup)="buscarProductos()">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col mb-3">
+            <input type="text" class="form-control" placeholder="Cantidad de Artículos" formControlName="cantidadArticulos" (keyup)="buscarProductos()">
+          </div>
+          <div class="col mb-3">
+            <input type="text" class="form-control" placeholder="Cantidad Máxima de Artículos" formControlName="cantMaxArticulos" (keyup)="buscarProductos()">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col mb-6">
+            
+          </div>
+        </div>
+      </form>
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Cant. Max. Articulos a Vender</th>
+                <th scope="col">Cantidad de Artículos</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let art of ResultBusqueda">
+                <td >{{art.nombre}}</td>
+                <td>{{art.precio | currency }}</td>
+                <td>{{art.cantMaxArticulos}}</td>
+                <td>{{art.articulos.length}}</td>
+                <td>
+                    <div id="acciones">
+                        <button class="btn btn-primary" (click)="editarProducto(art.id)"><i class="bi bi-pencil-square"></i></button>
+                    </div>                                
+                </td>           
+            </tr>
+        </tbody>
+    </table>
+</div>

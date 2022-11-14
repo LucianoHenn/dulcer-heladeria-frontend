@@ -1,0 +1,94 @@
+
+<div class="container" id="factura" #factura>
+    <div class="card">
+        <div class="card-body">
+            <div id="invoice">
+                
+                <div class="invoice overflow-auto">
+                    <div style="min-width: 600px">
+                        <header>
+                            <div class="row">
+                                <div class="col">
+                                    <a href="javascript:;">
+    												<img src="assets/img/logo.png" width="120" alt="">
+												</a>
+                                </div>
+                                <div class="col company-details">
+                                    <h2 class="name">
+									Dulce Heladería S.R.L
+                                    </h2>
+                                    <div>Illia 1234, X5000, Córdoba</div>
+                                    <div>(351) 123-456</div>
+                                    <div>CUIL 23-6540650-3</div>
+                                    <div>dulce@heladeria.com.ar</div>
+                                </div>
+                            </div>
+                        </header>
+                        <main>
+                            <div class="row contacts">
+                                <div class="col invoice-to">
+                                    <div class="text-gray-light">Cliente:</div>
+                                    <h2 class="to">{{Factura.Cliente!.businessName}}</h2>
+                                    <div class="address">{{Factura.Cliente!.homeAdress}}</div>
+                                    <div class="address">{{TiposIdentifiers[Factura.Cliente!.identifierTypeId!]}} {{Factura.Cliente!.identifier}}</div>
+                                    <div class="email"><a href="mailto:{{Factura.Cliente!.email}}">{{Factura.Cliente!.email}}</a>
+                                    </div>
+                                </div>
+                                <div class="col invoice-details">
+                                    <h1 class="invoice-id">Comprobante #{{Factura.id}}</h1>
+                                    <div class="date">Fecha: {{Factura.fecha}}</div>
+                                    <div class="fp">Forma de Pago: {{Factura.formaPago}}</div>
+                                </div>
+                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th class="text-left">Descripción</th>
+                                        <th class="text-right">Precio Unitario</th>
+                                        <th class="text-right">Cantidad</th>
+                                        <th class="text-right">Subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let prod of Factura.producto; let i = index">
+                                        <td class="no">{{i+1}}</td>
+                                        <td class="text-left">
+                                            <h3>
+										{{prod.nombre}} 
+                                            </h3>
+                                            <span *ngFor="let art of prod.articulos">
+                                             {{art.nombre}} 
+                                            </span>
+                                            </td>
+                                        <td class="unit">{{prod.precio | currency}}</td>
+                                        <td class="qty">{{prod.cantidad}}</td>
+                                        <td class="total">{{prod.precio*prod.cantidad | currency}}</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="2"></td>
+                                        <td colspan="2">TOTAL</td>
+                                        <td>{{Factura.total | currency}}</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <div class="thanks">Muchas Gracias por su compra!</div>
+                        </main>
+                        <footer>Comprobante no valido como factura.</footer>
+                    </div>
+                    <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="toolbar hidden-print">
+    <hr>
+    <div class="text-center">
+        <button type="button" class="btn btn-primary" (click)="generatePDF()"><i class="fa fa-print"></i> Descargar PDF</button>
+        <button type="button" class="btn btn-primary mx-3" (click)="openPDF()"><i class="fa fa-print"></i> Abrir PDF</button>
+    </div>
+</div>

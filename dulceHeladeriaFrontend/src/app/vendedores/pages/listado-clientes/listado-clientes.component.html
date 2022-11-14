@@ -1,0 +1,167 @@
+<div id="header">
+  <h3>Clientes</h3>
+  <button type="button" class="btn btn-primary mb-3" (click)="openNuevoCliente()" >Nuevo Cliente</button>
+</div>
+<div class="content">
+    <form [formGroup]="busquedaForm">
+      <div class="row">
+        <div class="col mb-3">
+          <input type="text" class="form-control" placeholder="Nro de Documento" formControlName="identifier" (keyup)="buscarClientes()">
+        </div>
+        <div class="col mb-3">
+          <input type="text" class="form-control" placeholder="Razón Social" formControlName="businessName" (keyup)="buscarClientes()">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col mb-3">
+          <input type="text" class="form-control" placeholder="Dirección" formControlName="homeAdress" (keyup)="buscarClientes()">
+        </div>
+        <div class="col mb-3">
+          <input type="text" class="form-control" placeholder="Email" formControlName="email" (keyup)="buscarClientes()">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col mb-6">
+          
+        </div>
+      </div>
+    </form>
+    <div class="row">
+        <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Tipo de Documento</th>
+                <th scope="col">Nro de Documento</th>
+                <th scope="col">Razón Social</th>
+                <th scope="col">Dirección</th>
+                <th scope="col">Email</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let client of ResultBusqueda">
+                <td scope="row">{{TiposIdentifiers[client.identifierTypeId!]}}</td>
+                <td>{{client.identifier}}</td>
+                <td>{{client.businessName}}</td>
+                <td>{{client.homeAdress}}</td>
+                <td>{{client.email}}</td>
+                <td>
+                  <div id="acciones">
+                    <button class="btn btn-primary" (click)="openModifCliente(client)"><i class="bi bi-pencil-square"></i></button>                
+                  </div>  
+                </td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>
+<div class="modal fade" id="NuevoCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Nuevo Cliente</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeNuevoCliente()">
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="nuevoClienteForm">
+            <div class="form-group">
+            <label for="exampleFormControlInput1">Razón Social</label>
+            <input class="form-control" type="text" placeholder="" id="razonSocial" formControlName="businessName">
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="nuevoClienteForm.controls.businessName.touched && nuevoClienteForm.controls.businessName.invalid">
+              Campo Requerido
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Tipo de Documento</label>
+              <select class="form-control" id="tipoIdentificador" formControlName="identifierTypeId">
+                <option [value]=1>DNI</option>
+                <option [value]=2>CUIT</option>
+                <option [value]=3>CUIL</option>
+              </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Nro de Documento</label>
+                <input class="form-control" type="text" placeholder="" id="nroIdentificador" formControlName="identifier">
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="nuevoClienteForm.controls.identifier.touched && nuevoClienteForm.controls.identifier.invalid">
+              Campo Requerido y debe ser numérico
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Domicilio</label>
+                <input class="form-control" type="text" placeholder="" id="domicilio" formControlName="homeAdress">
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="nuevoClienteForm.controls.homeAdress.touched && nuevoClienteForm.controls.homeAdress.invalid">
+              Campo Requerido
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Email</label>
+                <input type="email" class="form-control" placeholder="nombre@dominio.com" id="email" formControlName="email">
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="nuevoClienteForm.controls.email.touched && nuevoClienteForm.controls.email.invalid">
+              Campo Requerido, debe ser un email 
+            </div>
+          </form>
+    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeNuevoCliente()">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="registrarCliente()" [disabled]="nuevoClienteForm.invalid">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="ModifCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modificar Cliente</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeModifCliente()">
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="modificarClienteForm">
+            <div class="form-group">
+            <label for="exampleFormControlInput1">Razón Social</label>
+            <input class="form-control" type="text" placeholder="" id="razonSocial" formControlName="businessName">
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="modificarClienteForm.controls.businessName.touched && modificarClienteForm.controls.businessName.invalid">
+              Campo Requerido
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Tipo de Documento</label>
+              <select class="form-control" id="tipoIdentificador" formControlName="identifierTypeId">
+                <option [value]=1>DNI</option>
+                <option [value]=2>CUIT</option>
+                <option [value]=3>CUIL</option>
+              </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Nro de Documento</label>
+                <input class="form-control" type="text" placeholder="" id="nroIdentificador" formControlName="identifier">
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="modificarClienteForm.controls.identifier.touched && modificarClienteForm.controls.identifier.invalid">
+              Campo Requerido y debe ser numérico
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Domicilio</label>
+                <input class="form-control" type="text" placeholder="" id="domicilio" formControlName="homeAdress">
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="modificarClienteForm.controls.homeAdress.touched && modificarClienteForm.controls.homeAdress.invalid">
+              Campo Requerido
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Email</label>
+                <input type="email" class="form-control" placeholder="nombre@dominio.com" id="email" formControlName="email">
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="modificarClienteForm.controls.email.touched && modificarClienteForm.controls.email.invalid">
+              Campo Requerido, debe ser un email 
+            </div>
+          </form>
+    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModifCliente()">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="modificarCliente()" [disabled]="modificarClienteForm.invalid">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

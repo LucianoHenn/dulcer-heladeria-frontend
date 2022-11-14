@@ -1,0 +1,16 @@
+<div class="report-data-container">
+    
+<div class="report-data-container-header">
+    <button (click)="ventaFinal()" class="btn"> REPORTE DE VENTAS: FINAL DEL DÍA </button>
+    <div>
+        <h1>{{total | currency}}</h1>
+        <span >{{date.start | date}} - {{date.end | date}}</span>
+    </div>
+</div>
+    <div>
+        <div class="row">
+            <!--<div class="col"><app-ranking-items></app-ranking-items></div>-->
+            <div class="col"><app-reporte-grafico-linea [start]="start" [end]="end"></app-reporte-grafico-linea></div>
+        </div>
+    </div>
+</div>

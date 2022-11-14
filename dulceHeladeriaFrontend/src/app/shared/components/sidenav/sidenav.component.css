@@ -1,0 +1,19 @@
+.btn{
+    width: 250px !important;
+    margin-left: 5px;
+}
+.btn:hover{
+    background-color: #744c4d;
+    color: papayawhip;
+    font-weight: 500;
+}
+.dropdown-item{
+    width: 250px !important;
+    margin-left: 5px;
+}
+.dropdown-menu {
+    --bs-dropdown-link-active-bg: white;
+}
+.col-3{
+ height: 100vh;   
+}

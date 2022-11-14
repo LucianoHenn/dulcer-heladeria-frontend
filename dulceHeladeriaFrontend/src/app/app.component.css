@@ -1,0 +1,12 @@
+.container-general{
+    min-height: 100vh;
+    background-color: rgba(245, 245, 245, 0.466);
+}
+#main{
+    margin-right: 5vw;
+    margin-top: 5vw;
+}
+#sticky-sidebar{
+    background-color: white;
+    max-width: 17vw;
+}

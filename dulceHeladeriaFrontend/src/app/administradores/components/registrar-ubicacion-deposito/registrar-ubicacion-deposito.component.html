@@ -1,0 +1,59 @@
+<button type="button" class="btn btn-primary" (click)="openNuevaUbicacion()" [disabled]="ubicacion">Nueva Ubicacion</button>
+
+<div class="modal fade" id="nuevaUbicacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Nueva Ubicación de depósito</h5>
+                <button type="button" class="close" aria-label="Close" (click)="closeNuevaUbicacion()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="nuevaUbicacionForm">
+                    <div class="form-group">
+                        <label for="column">Columnas</label>
+                        <input class="form-control" type="text" placeholder="" id="column"
+                            formControlName="column">
+                    </div>
+                    <div class="form-group">
+                        <label for="row">Filas</label>
+                        <input class="form-control" type="text" placeholder="" id="row"
+                            formControlName="row">
+                    </div>                   
+                    <div class="form-group">
+                        <label for="capacity">Capacidad</label>
+                        <input class="form-control" type="text" placeholder="" id="capacity"
+                            formControlName="capacity">
+                    </div>
+                    <div class="form-group">
+                        <div></div>
+                        <label for="depositId">Elija un depósito</label>
+                        <select class="form-select form-select-md mb-3" aria-label=".from.select-md Rol de usuario" formControlName="depositId">
+                            <option *ngFor="let depo of depositos" [value]="depo.id">{{depo.name}}</option>   
+                        </select>
+                      </div>    
+                      <div class="form-group">
+                        <label for="itemType">Tipo de Artículo</label>
+                        <select class="form-control" id="itemType" formControlName="itemTypeId">
+                            <option [value]=1>Helado Litro</option>
+                            <option [value]=2>Helado Paquete</option>
+                            <option [value]=3>Insumo</option>
+                        </select>
+                    </div>
+                    <div class="alert alert-danger" role="alert"
+                        *ngIf="nuevaUbicacionForm.touched && nuevaUbicacionForm.invalid">
+                        Faltan Campos
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                    (click)="closeNuevaUbicacion()">Cancelar</button>
+                <button type="button" class="btn btn-primary" (click)="registrarNuevaUbicacion()"
+                    [disabled]="nuevaUbicacionForm.invalid">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>

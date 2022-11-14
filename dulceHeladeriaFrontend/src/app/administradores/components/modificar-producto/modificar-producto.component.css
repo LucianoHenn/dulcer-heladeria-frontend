@@ -1,0 +1,56 @@
+.btn-primary {
+  background-color: #744c4d;
+  border: none;
+  color: papayawhip;
+  font-weight: 500;
+  }
+  
+  .btn-primary:active {
+    background-color: #744c4d;
+  border: none;
+  color: papayawhip;
+  font-weight: 500;
+  }
+  
+  td {
+    vertical-align: middle;
+  }
+  #header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  #content {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    height: 400px;
+  }
+  #form {
+    flex-basis: 30%;  
+    margin-right: 30px;
+    margin-bottom: 20px;
+  }
+  #table {
+    flex-grow: 1;
+    
+  }
+  #list{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  li{
+    margin-bottom: 5px;
+  }
+  .footer{
+    display: flex;
+    justify-content: end;
+  }
+  
+  .footer .btn{
+    width: 10vw;
+  }

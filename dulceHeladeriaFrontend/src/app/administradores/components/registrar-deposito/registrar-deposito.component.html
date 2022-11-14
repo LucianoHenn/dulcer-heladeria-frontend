@@ -1,0 +1,39 @@
+<button type="button" class="btn btn-primary" (click)="openNuevoDeposito()" [disabled]="deposito">Nuevo Depósito</button>
+
+<div class="modal fade" id="NuevoDeposito" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Nuevo Artículo</h5>
+                <button type="button" class="close" aria-label="Close" (click)="closeNuevoDeposito()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="nuevoDepositoForm">
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <input class="form-control" type="text" placeholder="" id="name"
+                            formControlName="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Dirección</label>
+                        <input class="form-control" type="text" placeholder="" id="address"
+                            formControlName="address">
+                    </div>                   
+                    <div class="alert alert-danger" role="alert"
+                        *ngIf="nuevoDepositoForm.touched && nuevoDepositoForm.invalid">
+                        Faltan Campos
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                    (click)="closeNuevoDeposito()">Cancelar</button>
+                <button type="button" class="btn btn-primary" (click)="registrarArticulo()"
+                    [disabled]="nuevoDepositoForm.invalid">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>

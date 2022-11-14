@@ -1,0 +1,223 @@
+<div class="container">
+  <div id="content">
+    <div id="mainContent" class="col">
+      <div class="row">
+        <app-clientes (cambio)="clientChange($event)"></app-clientes>
+      </div>
+      <div class="card border-dark mb-3" style="max-width: 45rem;">
+        <div class="card-header bg-transparent border-dark">Productos</div>
+        <div class="card-body text-dark">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Artículo</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Sub-total</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let prod of productosVenta">
+                <td>{{prod.nombre}}</td>
+                <td>{{prod.cantidad}}</td>
+                <td>{{prod.precio | currency}}</td>
+                <td>{{prod.cantidad! * prod.precio! | currency}}</td>
+                <td><button type="button" class="btn-close" aria-label="Close"
+                    (click)="EliminarProducto(prod)"></button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer bg-transparent border-dark">
+          <label>Total a pagar: <B>{{total | currency}}</B></label>
+        </div>
+      </div>
+      <div class="row"><div class="form-group">
+        <label for="FormControlSelect1">Método de pago</label>
+        <select class="form-control" id="paymentMethod" [(ngModel)]="metodo">
+          <option [value]=1>Efectivo</option>
+          <option [value]=2>Mercado Pago</option>
+          <option [value]=3>Tarjeta</option>
+        </select>
+      </div></div>
+      <div class="row">
+        <button type="submit" class="btn btn-primary" (click)="registrarVenta()" style="margin-top: 2vh;"
+          [disabled]="!esVentaValida()">Cobrar</button>
+      </div>
+      
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="card-group">
+          <div class="card" *ngFor="let producto of productos">
+            <img [src]="producto.imagen" class="card-img-top" alt="..." (click)="openModal(producto)">
+            <div class="card-body">
+              <h5 class="card-title">{{producto.nombre}}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="cantidades" tabindex="-1" role="dialog" aria-labelledby="titulo" arial-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="titulo">{{prodSeleccionado.nombre}}</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="cerrarModal()">
+        </button>
+      </div>
+      <div class="modal-body">
+        <label><b> Precio: </b>{{prodSeleccionado.precio | currency}}</label> <br>
+        <div *ngIf="prodSeleccionado.cantMaxArticulos > 1">
+          <label><b> Cantidad maxima de articulos: </b>{{prodSeleccionado.cantMaxArticulos}}</label><br>
+          <label><b> Cantidad de articulos disponibles:
+            </b>{{prodSeleccionado.cantMaxArticulos!-artSeleccionados.length}}</label>
+          <hr>
+        </div>
+        <div class="alert alert-succes">
+          <div *ngIf="prodSeleccionado.cantMaxArticulos > 1">
+            <label for="tipoGustos">Articulos</label>
+            <ul class="list-group" *ngFor="let art of prodSeleccionado.articulos">
+              <li class="list-group-item d-flex justify-content-between align-items-center mb-1"
+                (click)="agregarArticulo(art)" style="cursor: pointer;">
+                {{art.nombre}}
+                <div *ngIf="art.seleccionado">
+                  <i class="bi bi-check-lg"></i>
+                </div>
+              </li>
+            </ul>
+            <br>
+            <hr>
+            <label for="tipoGustos">Articulos Seleccionados</label><br>
+            <div *ngFor="let art of artSeleccionados">
+              <span class="badge bg-danger mb-1" style="cursor: pointer;" (click)="quitarArticulo(art)">{{art.nombre}}
+                <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
+              </span>
+            </div>
+            <br>
+          </div>
+          <hr>
+          <label for="cantidad">Cantidad</label>
+          <input class="form-control" type="number" placeholder="" id="cantidad"
+            [(ngModel)]="prodSeleccionado.cantidad">
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="agregarProducto(this.prodSeleccionado)"
+          [disabled]="!esProductoValido()">Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="card">
+          <img src=
+            class="card-img-top" alt="..." (click)="openModal()">
+          <div class="card-body">
+            <h5 class="card-title"> HELADO 1/2 KG</h5>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://chio.com.ar/tienda/pehuajo/136-home_default/helado-artesanal-x-kilo.jpg"
+            class="card-img-top" alt="..." (click)="openModal()">
+          <div class="card-body">
+            <h5 class="card-title">HELADO 1/4 KG</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col col-md-4">
+      <div class="card-group">
+        <div class="card">
+          <img src="https://thumbs.dreamstime.com/z/cucurucho-de-la-galleta-56592738.jpg" (click)="openModal()" class="card-img-top"
+            alt="..." (click)="openModal()">
+          <div class="card-body">
+            <h5 class="card-title">Cucurucho</h5>
+
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://www.argentina.gridohelado.com/wp-content/uploads/2016/06/cucurucho-mini-gigante.jpg"
+            class="card-img-top" alt="..." (click)="openModal()">
+          <div class="card-body">
+            <h5 class="card-title">1 BOCHA</h5>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://www.argentina.gridohelado.com/wp-content/uploads/2017/09/cucurucho-gigante-2-bochas.jpg"
+            class="card-img-top" alt="..." (click)="openModal()">
+          <div class="card-body">
+            <h5 class="card-title">DOS BOCHAS</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col col-md-4">
+      <div class="card-group">
+        <div class="card">
+          <img src="https://www.grupoelnene.com.ar/15065-large_default/coca-cola-lata-354cc.jpg" class="card-img-top"
+            alt="..." (click)="openModal()">
+          <div class="card-body">
+            <h5 class="card-title">COCA COLA</h5>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            src="http://d3ugyf2ht6aenh.cloudfront.net/stores/861/458/products/340371-e6a85071ccb591207815680469613726-640-0.jpg"
+            class="card-img-top" alt="..." (click)="openModal()">
+          <div class="card-body">
+            <h5 class="card-title">SPRITE</h5>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://granor.com.br/web/image/product.template/15089/image_1024?unique=7a4b19a"
+            class="card-img-top" alt="..." (click)="openModal()">
+          <div class="card-body">
+            <h5 class="card-title">FANTA</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col col-md-4">
+      <div class="card-group">
+        <div class="card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/A_small_cup_of_coffee.JPG" class="card-img-top"
+            alt="..." (click)="openModal()">
+          <div class="card-body">
+            <h5 class="card-title">CAFE</h5>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://okdiario.com/img/recetas/2016/10/26/beneficios-del-te-de-limon.jpg" class="card-img-top"
+            alt="..." (click)="openModal()">
+          <div class="card-body">
+            <h5 class="card-title">TE</h5>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://mercado.com.ar/wp/wp-content/uploads/2021/03/agua.jpg" class="card-img-top" alt="...">
+          <div class="card-body" (click)="openModal()">
+            <h5 class="card-title">AGUA</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

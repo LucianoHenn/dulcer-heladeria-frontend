@@ -1,0 +1,19 @@
+h1{
+    font-size: 80px;
+    color: white;
+    background-color: pink;
+}
+p{
+    font-size: 40px;
+    color: #744c4d;
+}
+img{
+    max-width: 400px;
+    max-height: 400px;
+    background-color: white;
+    border-radius: 20%;
+    margin-bottom: 5vh;
+    border-color: pink;
+    border-style: solid;
+    border-width: 3px;
+}

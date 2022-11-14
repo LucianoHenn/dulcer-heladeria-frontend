@@ -1,0 +1,38 @@
+<div id="header">
+    <h3>Modificar Articulo</h3>
+    <button type="button" class="btn btn-primary" (click)="regresar()">Volver</button>
+</div>
+<form class="form mt-3 mb-3" [formGroup]="formModificarArticulo">
+    <div class="row mt-3">
+        <div class="form-group col-sm-4">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" formControlName="name">
+        </div>
+        <div class="form-group col-sm-4">
+            <label for="descripcion">Descripcion</label>
+            <input type="text" class="form-control" id="descripcion" formControlName="description">
+        </div>
+        <div class="form-group col-sm-4">
+            <label for="tipoArticulo">Tipo Articulo</label>
+            <select class="form-select" id="tipoArticulo" formControlName="itemTypeId">
+                <option value="1">Helado LT</option>
+                <option value="2">Helado LT</option>
+                <option value="3">Helado PAQ</option>
+                <option value="4">Helado UNI</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="form-group col-sm-4">
+            <select class="form-select" id="tipoMedida" formControlName="measuringType">
+                <option value="1">Unidad</option>
+                <option value="2">Litro</option>
+                <option value="3">Paquete</option>
+            </select>
+        </div>
+    </div>
+</form>
+<div id="footer">
+    <button [disabled]="formModificarArticulo.invalid" type="button" class="btn btn-primary"
+        (click)="modificarArticulo()">Guardar</button>
+</div>

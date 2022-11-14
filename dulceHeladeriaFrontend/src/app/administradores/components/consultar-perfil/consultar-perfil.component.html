@@ -1,0 +1,44 @@
+<div id="header">
+    <h3>Mi Perfil</h3>
+    <button type="button" class="btn btn-primary" routerLink="/administrador/perfil/cambiarContrasenia">Cambiar
+        Contraseña</button>
+</div>
+<form class="form mt-3" [formGroup]="formPerfil">
+    <div class="row mt-3">
+        <div class="form-group col-sm-4">
+            <label for="inputNombre">Nombre</label>
+            <input type="text" class="form-control" id="inputNombre" formControlName="nombre">
+        </div>
+        <div class="form-group col-sm-4">
+            <label for="inputApellido">Apellido</label>
+            <input type="text" class="form-control" id="inputApellido" formControlName="apellido">
+        </div>
+        <div class="form-group col-sm-4">
+            <label for="inputDni">Dni</label>
+            <input type="text" class="form-control" id="inputDni" formControlName="dni">
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="form-group col-sm-4">
+            <label for="inputEmail">Email</label>
+            <input [disabled]="!edicionActiva" type="email" class="form-control" id="inputEmail"
+                formControlName="email">
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="">Rol</label>
+            <select class="form-select form-select-md mb-3" aria-label=".from.select-md Rol de usuario"
+                formControlName="rol">
+                <option value="0">Administrador</option>
+                <option value="1">Vendedor</option>
+            </select>
+        </div>
+    </div>
+</form>
+<div id="footer">
+    <button *ngIf="!edicionActiva" type="button" class="btn btn-primary" (click)="habilitarEdicion()">Editar</button>
+
+    <button *ngIf="edicionActiva" type="button" class="btn btn-primary" (click)="cancelarEdicion()">Cancelar</button>
+    <button *ngIf="edicionActiva" [disabled]="formPerfil.invalid" type="button" class="btn btn-primary"
+        (click)="editarPerfil()">Guardar</button>
+
+</div>

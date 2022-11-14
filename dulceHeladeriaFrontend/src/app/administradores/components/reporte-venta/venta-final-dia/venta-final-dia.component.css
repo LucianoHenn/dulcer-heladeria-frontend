@@ -1,0 +1,24 @@
+.reporte-final-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.container-row{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.form-select{
+    width: 100px;
+}
+
+.btn{
+    flex-grow: 1;
+    width: 30vw; 
+    margin-left: 10px;
+    background-color: #744c4d;
+  border: none;
+  color: papayawhip;
+  font-weight: 700;
+}

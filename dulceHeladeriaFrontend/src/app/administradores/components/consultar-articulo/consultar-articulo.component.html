@@ -1,0 +1,59 @@
+<div id="header">
+    <h3>Stock de Artículos</h3>
+    <div>
+      <app-registrar-stock-articulo (recargar)="recargar()"></app-registrar-stock-articulo>
+      <app-registrar-articulo></app-registrar-articulo>
+    </div>
+</div>
+<div id="content" class="mt-3">
+    <form [formGroup]="busquedaForm">
+        <div class="row">
+          <div class="col mb-3">
+            <input type="text" class="form-control" placeholder="Nombre" formControlName="name" (keyup)="buscarArticulos()">
+          </div>
+          <div class="col mb-3">
+            <input type="text" class="form-control" placeholder="Cantidad" formControlName="cantidad" (keyup)="buscarArticulos()">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col mb-3">
+            <input type="text" class="form-control" placeholder="Tipo de Artículo" formControlName="itemType" (keyup)="buscarArticulos()">
+          </div>
+          <div class="col mb-3">
+            <input type="text" class="form-control" placeholder="Unidad de Medida" formControlName="measuringType" (keyup)="buscarArticulos()">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col mb-6">
+            
+          </div>
+        </div>
+      </form>
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Unidad</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Estado</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let art of ResultBusqueda">
+                <td >{{art.name}}</td>
+                <td>{{art.amount}}</td>
+                <td>{{art.measuringType}}</td>
+                <td>{{art.itemType}}</td>
+                <td>{{ !art.deletionDate ? "Activo" : "Inactivo"}}</td>
+                <td>
+                    <div id="acciones">
+                        <button class="btn btn-primary" (click)="editar(art.id)"><i class="bi bi-pencil-square"></i></button>                
+                        <button class="btn btn-primary" (click)="verUbicaciones(art.id)"><i class="bi bi-info-circle"></i></button>   
+                    </div>                                
+                </td>           
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,23 @@
+.btn-primary {
+  background-color: #744c4d;
+  border: none;
+  color: papayawhip;
+  font-weight: 500;
+}
+
+.btn-primary:active {
+  background-color: #744c4d;
+  border: none;
+  color: papayawhip;
+  font-weight: 500;
+}
+
+td {
+  vertical-align: middle;
+}
+
+#header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

@@ -1,0 +1,26 @@
+.btn-primary {
+    background-color: pink;
+    border: none;
+    color: white;
+    font-weight: 500;
+  }
+  
+  .btn-primary:active {
+    background-color: #744c4d;
+    border: none;
+    color: papayawhip;
+    font-weight: 500;
+  }
+  
+  #header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  #footer{
+    display: flex;
+    justify-content: center;
+  }
+  #footer button{
+    width: 10vw;
+  }

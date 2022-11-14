@@ -1,0 +1,21 @@
+<div class="container-fluid" style="width: 30vw; margin-left: 9vw;">
+    <img src="../../../../assets/img/logo.png" alt="logo de la organizacion, dulce heladeria, una bocha de helado en un cucharon" class="logo" width="200" height="200" style="margin-left: 9vw;">
+    <form [formGroup]="miForm" class="container" style="width: 30vw;" (ngSubmit)="ingresar()">
+      <div class="form-floating mb-3" style="width: 30vw;">
+            <input type="email" class="form-control" formControlName="user" placeholder="name@example.com">
+            <label for="floatingInput">Correo</label>
+      </div>
+      
+      <div class="form-floating" style="width: 30vw;">
+            <input type="password" class="form-control" formControlName="password" placeholder="Password" >
+            <label for="floatingPassword">Contraseña</label>
+      </div>
+      <div class="alert alert-danger mt-3" role="alert" *ngIf="miForm.touched && miForm.invalid">
+        Debe ingresar un correo válido y una contraseña
+      </div>
+      <br>
+      <div class="row">
+      <button type="submit" class="btn btn-light" [disabled]="miForm.invalid">INICIAR SESIÓN</button>
+      </div>
+    </form>
+  </div>

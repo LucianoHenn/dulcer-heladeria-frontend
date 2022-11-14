@@ -1,0 +1,48 @@
+<button class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="modalTarget" [disabled]="movimiento"><i class="bi bi-pencil-square"></i></button>
+
+<div class="modal fade" id={{modalId}} tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Nuevo Movimiento desde Ubicación: {{ubicArticulo.locationName}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="nuevoMovimientoForm">
+                    
+                    <div class="form-group">
+                        <label for="depositId">Depósito</label>
+                        <select class="form-control" id="depositId" formControlName="depositId">
+                            <option *ngFor="let dep of depositos" [value]="dep.id">{{dep.name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="locationId">Ubicación</label>
+                        <select class="form-control" id="locationId" formControlName="locationId">
+                            <option *ngFor="let ubi of ubicaciones" [value]="ubi.id">{{ubi.name}}</option>
+                        </select>
+                    </div>                    
+                    <div class="form-group">
+                        <label for="amount">Cantidad</label>
+                        <input class="form-control" type="number" placeholder="" id="amount"
+                            formControlName="amount">
+                    </div>
+                    <div class="form-group">
+                        <label for="motive">Motivo</label>
+                        <input class="form-control" type="text" placeholder="" id="motive"
+                            formControlName="motive">
+                    </div>                    
+                    <div class="alert alert-danger" role="alert"
+                        *ngIf="nuevoMovimientoForm.touched && nuevoMovimientoForm.invalid">
+                        Faltan Campos
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button #cancelar type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" (click)="registrarMovimiento()"
+                    [disabled]="nuevoMovimientoForm.invalid">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>

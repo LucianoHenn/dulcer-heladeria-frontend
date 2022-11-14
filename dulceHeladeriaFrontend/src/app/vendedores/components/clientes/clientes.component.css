@@ -1,0 +1,21 @@
+input[type="email"]:focus,input[type="password"]:focus,input[type="text"]:focus, select:focus{
+    border-color: pink;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px pink;
+    outline: 0 none;
+}
+.btn-primary{
+    background-color: #744c4d;
+  border: none;
+  color: papayawhip;
+  font-weight: 500;
+}
+.btn-group{
+    margin-left: 3vw;
+    margin-top: 3vh;
+}
+#datosCliente{
+    display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-bottom: 2vh;
+}

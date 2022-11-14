@@ -1,0 +1,61 @@
+<div id="header">
+    <h3>Ventas</h3>
+    <button type="button" class="btn btn-primary" routerLink="/vendedor/venta">Nueva venta</button>
+</div>
+<div id="content">
+    <form [formGroup]="busquedaForm">
+        <div class="row mb-3">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Cliente" formControlName="cliente"
+                    (keyup)="buscarVentas()">
+            </div>
+            <div class="col mb-3">
+                
+                <input type="text" class="form-control" placeholder="Metodo de Pago" formControlName="metodoPago"
+                    (keyup)="buscarVentas()">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col mb-3">
+                <label for="">Fecha Desde</label>
+                <input type="date" class="form-control" placeholder="Fecha Desde" formControlName="fechades" (change)="buscarVentas()" >
+            </div>
+            <div class="col mb-3">
+                <label for="">Fecha Hasta</label>
+                <input type="date" class="form-control" placeholder="Fecha Hasta" formControlName="fechahas" (change)="buscarVentas()" >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mb-6">
+
+            </div>
+        </div>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Fecha</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Metodo de Pago</th>
+                <th scope="col">Total</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let venta of ResultBusqueda">
+                <td>{{venta.date | date:'dd/MM/yyyy'}}</td>
+                <td>{{venta.clientName}}</td>
+                <td>{{venta.paymentMethod}}</td>
+                <td>{{venta.totalAmount | currency}}</td>
+                <td>
+                    <div id="acciones">
+                        <button class="btn btn-primary" (click)="verDetalleVenta(venta.id)"><i
+                                class="bi bi-info-circle"></i></button>
+                        <button class="btn btn-primary ms-3" (click)="verDetalleVenta(venta.id)"><i class="bi bi-receipt"></i></button>
+                    </div>
+                </td>
+                
+            </tr>
+        </tbody>
+    </table>
+</div>

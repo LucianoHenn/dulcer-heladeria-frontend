@@ -1,0 +1,24 @@
+<div id="header">
+    <h3>Cambiar contraseña</h3>
+    <button type="button" class="btn btn-primary" (click)="regresar()">Volver</button>
+</div>
+<form class="form mt-3 mb-3" [formGroup]="formCambiarContrasenia">
+    <div class="row mt-3">
+        <div class="form-group col-sm-4">
+            <label for="inputNombre">Contraseña actual</label>
+            <input type="text" class="form-control" id="inputNombre" formControlName="passActual">
+        </div>
+        <div class="form-group col-sm-4">
+            <label for="inputApellido">Nueva contraseña</label>
+            <input type="text" class="form-control" id="inputApellido" formControlName="passNueva">
+        </div>
+        <div class="form-group col-sm-4">
+            <label for="inputDni">Repetir nueva contraseña</label>
+            <input type="text" class="form-control" id="inputDni" formControlName="passNuevaRepetida">
+        </div>
+    </div>
+</form>
+<div id="footer">
+    <button [disabled]="formCambiarContrasenia.invalid" type="button" class="btn btn-primary"
+        (click)="cambiarContrasenia()">Guardar</button>
+</div>

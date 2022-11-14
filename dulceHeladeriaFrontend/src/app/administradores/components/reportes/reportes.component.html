@@ -1,0 +1,73 @@
+<div id="report-container">
+    <div id="report-container-header">
+        <!-- <div class="report-container-picker">
+            <p class="title"><b>REPORTES</b></p>
+
+            <mat-form-field appearance="fill" [formGroup]="range">
+            <mat-label>Seleccione un rango de fecha</mat-label>
+            <mat-date-range-input [rangePicker]="picker" required>
+              <input matStartDate placeholder="Start date" formControlName="start" >
+              <input matEndDate placeholder="End date" formControlName="end"
+              (dateChange)="send()">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+        </div> -->
+
+        <div class="report-container-picker">
+            <p class="title"><b>REPORTES</b></p>
+
+            <!-- <mat-form-field appearance="fill" [formGroup]="range">
+            <mat-label>Seleccione un rango de fecha</mat-label>
+            <mat-date-range-input [rangePicker]="picker" required>
+              <input matStartDate placeholder="Start date" formControlName="start" >
+              <input matEndDate placeholder="End date" formControlName="end"
+              (dateChange)="send()">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field> -->
+            <!-- <mat-form-field >
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [rangePicker]="picker" >
+                    <input matStartDate matInput placeholder="Start date"  />
+                    <input matEndDate matInput placeholder="End date" (dateChange)="hello('end', $event); send()" />
+              </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field> -->
+
+            <mat-form-field appearance="fill" class="example-form-field"  [formGroup]="range">
+                <mat-label>Seleccione Un rango de fechas</mat-label>
+                <mat-date-range-input [rangePicker]="rangePicker">
+                  <input matStartDate placeholder="Start date" #start formControlName="start" >
+                  <input matEndDate placeholder="End date" #end formControlName="end" >
+                </mat-date-range-input>
+                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
+                <mat-date-range-picker #rangePicker>
+                  <mat-date-range-picker-actions>
+                    <button mat-button matDateRangePickerCancel>Cancelar</button>
+                    <button mat-raised-button color="primary" matDateRangePickerApply (click)="send()">Aplicar</button>
+                  </mat-date-range-picker-actions>
+                </mat-date-range-picker>
+              </mat-form-field>
+
+
+            
+        </div>
+        <nav class="navbar navbar-light">
+            <a class="navbar-option" (click)="changeReport()"><b>Ventas</b></a>
+            <a class="navbar-option" (click)="changeReport()"><b>Stock</b></a>
+        </nav>
+    </div>
+    
+    <div *ngIf="!isStock">
+        <app-reporte-venta [start]="myStart" [end]="myEnd"></app-reporte-venta>
+    </div>
+   
+   <div *ngIf="isStock">
+      <app-reporte-stock></app-reporte-stock>
+  </div>
+</div>

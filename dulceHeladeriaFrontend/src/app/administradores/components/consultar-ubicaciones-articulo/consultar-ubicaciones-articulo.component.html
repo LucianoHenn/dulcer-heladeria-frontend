@@ -1,0 +1,32 @@
+<div id="header">
+    <h3>Ubicaciones: {{nombreArticulo}}</h3>
+    <button class="btn btn-primary" (click)="regresar()">Volver</button>    
+</div>
+<div id="content">    
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Ubicación</th>
+                <th scope="col">Depósito</th>
+                <th scope="col">Tipo Artículo</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Capacidad</th>
+                <th scope="col">Fecha Ingreso</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ubi of ubicacionesArticulo">
+                <td>{{ubi.location}}</td>
+                <td>{{ubi.deposit}}</td>
+                <td>{{ubi.itemType}}</td>
+                <td>{{ubi.amount}}</td>
+                <td>{{ubi.capacity}}</td>
+                <td>{{ubi.entryDate | date:'dd/MM/yyyy'}}</td>
+                <td>
+                    <app-registrar-movimiento-art (recargar)="onRecargar()" [ubicArticulo]="{itemStockId: ubi.id, locationName: ubi.location, locationId: ubi.locationId}"></app-registrar-movimiento-art>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

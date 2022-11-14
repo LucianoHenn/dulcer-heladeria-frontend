@@ -22,17 +22,17 @@ export class MovimientosService {
     ) { }
 
   getMovimietos() {
-    return this.http.get<movimiento[]>('https://localhost:5001/api/Movement', this._options);
+    return this.http.get<movimiento[]>('https://heladeria-back.herokuapp.com/api/Movement', this._options);
   }
 
   getMovimietosByItem(id : number) {
-    return this.http.get<movimiento[]>('https://localhost:5001/api/Movement/item?itemId=' + id, this._options);
+    return this.http.get<movimiento[]>('https://heladeria-back.herokuapp.com/api/Movement/item?itemId=' + id, this._options);
   }
 
   getMovimietosByDates(start:Date, end:Date) {
     let newStart = this.datepipe.transform(start,"yyyy-MM-dd");
     let newEnd = this.datepipe.transform(end,"yyyy-MM-dd");
-    return this.http.get<movimiento[]>(`https://localhost:5001/api/Movement/dates?start=${newStart}&end=${newEnd}`, this._options);
+    return this.http.get<movimiento[]>(`https://heladeria-back.herokuapp.com/api/Movement/dates?start=${newStart}&end=${newEnd}`, this._options);
   }
 
 }
